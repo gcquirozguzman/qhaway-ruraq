@@ -1,0 +1,20 @@
+# IA
+google-genai>=1.40
+
+# CLI, configuración y logs
+typer>=0.12
+rich>=13.7
+pyyaml>=6.0
+pydantic>=2.7
+python-dotenv>=1.0
+tenacity>=8.3
+python-slugify>=8.0
+
+# Zoom
+yt-dlp>=2025.1.1
+requests>=2.32
+
+# Extracción de documentos
+python-pptx>=1.0
+pymupdf>=1.24
+python-docx>=1.1

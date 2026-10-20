@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qhaway-ruraq"
+version = "0.1.0"
+description = "Convierte capacitaciones (video, audio, presentaciones, documentos, Zoom) en una Skill de Claude."
+requires-python = ">=3.11"
+# Las dependencias se instalan desde requirements.txt
+
+[project.scripts]
+qhaway = "qhaway.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+qhaway = ["prompts/*.md"]

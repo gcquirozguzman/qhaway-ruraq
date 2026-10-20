@@ -1,0 +1,25 @@
+# Grabaciones de Zoom a descargar con:  qhaway zoom
+#
+# Campos por grabación:
+#   curso:      carpeta del curso en input/ (kebab-case)
+#   clase:      carpeta de la clase ("clase-01-crear-usuarios") o solo el número ("01")
+#   tema:       (opcional) si la clase no existe, se crea con este tema
+#   url:        link compartido https://...zoom.us/rec/share/... o /rec/play/...  -> yt-dlp
+#   passcode:   (opcional) código de acceso de la grabación
+#   meeting_id: (opcional) ID o UUID de la reunión en TU cuenta -> API de Zoom
+#   metodo:     (opcional) auto | ytdlp | api   (auto: api si hay meeting_id y credenciales)
+#   nombre:     (opcional) sufijo del archivo; por defecto "zoom" (o "zoom-02", ...)
+#
+# También puedes poner la grabación en el campo "zoom" del clase.yaml de cada clase.
+
+grabaciones: []
+#  - curso: google-workspace-admin
+#    clase: "01"
+#    tema: crear usuarios
+#    url: https://us02web.zoom.us/rec/share/XXXXXXXX
+#    passcode: "a1b2c3"
+#
+#  - curso: google-workspace-admin
+#    clase: "02"
+#    meeting_id: "85212345678"
+#    metodo: api

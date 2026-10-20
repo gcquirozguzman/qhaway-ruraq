@@ -1,0 +1,65 @@
+# Configuración de qhaway-ruraq
+# Las rutas son relativas a la carpeta del proyecto.
+
+rutas:
+  input: input
+  output: output
+  bandeja: input/_bandeja
+  zoom_links: zoom_links.yaml
+
+gemini:
+  modelo: gemini-3.8-flash
+  # agentic: el modelo ajusta fps/resolución y consulta la transcripción según la tarea.
+  # static: procesamiento clásico con muestreo fijo de frames.
+  procesamiento_video: agentic
+  # Resolución máxima por frame: unspecified | low | medium | high | ultra_high
+  # (low/medium ≈ 70 tokens/frame, high ≈ 280). Más alta = más precisión en textos
+  # pequeños de botones, pero más tokens y menor duración máxima (~1 h en high).
+  resolucion_video: medium
+  intervalo_polling_s: 10
+  timeout_min: 90           # tiempo máximo esperando una respuesta en segundo plano
+  max_reintentos: 5         # reintentos ante 429 / 5xx / errores de red
+  max_chars_contexto: 150000  # texto de presentaciones/documentos que se adjunta al prompt
+  borrar_archivo_remoto: true # borra el archivo de la Files API al terminar
+  # Si una clase no tiene video ni audio, generar procedimientos solo con sus documentos.
+  procesar_documentos_sin_media: true
+
+precios:               # USD por millón de tokens (para output/costos.csv)
+  input_por_millon: 0.75
+  output_por_millon: 3.75
+
+video:
+  # Compresión opcional con ffmpeg ANTES de subir. Nunca corta el video.
+  comprimir: false
+  umbral_mb: 1500       # solo comprime si el archivo supera este tamaño
+  ancho_max: 1280       # reescala manteniendo proporción (no agranda)
+  crf: 28               # 18 = casi sin pérdida, 28 = liviano, 32 = muy liviano
+  preset: veryfast
+  audio_kbps: 64
+
+zoom:
+  metodo_por_defecto: auto      # auto | ytdlp | api
+  formato_ytdlp: "bv*+ba/b"
+  # Si una grabación exige iniciar sesión en Zoom, yt-dlp puede usar las cookies de tu
+  # navegador: chrome | edge | firefox ... (vacío = no usar)
+  cookies_navegador: ""
+  descargar_transcripcion: true
+  descargar_chat: true
+  # Preferencia de vistas MP4 cuando se usa la API (se baja la primera disponible).
+  vistas_preferidas:
+    - shared_screen_with_speaker_view
+    - shared_screen_with_gallery_view
+    - shared_screen
+    - active_speaker
+    - gallery_view
+  descargar_todas_las_vistas: false
+
+skill:
+  nombre: qhaway-ruraq
+  descripcion: >-
+    Procedimientos paso a paso, extraídos de capacitaciones, para ejecutar tareas
+    en plataformas web (principalmente Google) con Claude in Chrome. Úsala cuando
+    el usuario pida realizar, configurar o explicar una tarea cubierta por los cursos
+    del índice.
+  incluir_referencias: true
+  max_kb_por_referencia: 300
